@@ -1,10 +1,21 @@
+import { BrowserRouter, Route, Routes } from 'react-router'
 import AppLayout from './components/AppLayout'
+import PageNotFound from './pages/PageNotFound'
+import Homepage from './pages/Homepage'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
-    <div className='min-h-screen bg-gray-100'>
-      <AppLayout />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index path='/' element={<Homepage />} />
+          <Route path='dashboard' element={<Dashboard />} />
+        </Route>
+
+        <Route path='*' element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
