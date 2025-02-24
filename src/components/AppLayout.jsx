@@ -6,9 +6,9 @@ import Footer from './Footer'
 
 const DefaultLayout = () => {
   return (
-    <div className='p-4 bg-gray-100 min-h-screen'>
+    <div className='pt-4 bg-gray-100 min-h-screen'>
       <Header />
-      <main>
+      <main className='min-h-screen m-6'>
         <Outlet />
       </main>
       <Footer />

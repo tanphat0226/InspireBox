@@ -3,7 +3,7 @@ import { NavLink } from 'react-router'
 const Header = () => {
   const navLinkClasses = 'font-bold py-2 px-4 rounded-sm '
   return (
-    <header className='flex items-center justify-between p-4 bg-white shadow-md rounded-2xl'>
+    <header className=' mr-4 ml-4 flex items-center justify-between p-4 bg-white shadow-md rounded-2xl'>
       <h1 className='text-xl font-semibold'>InspireBox</h1>
       <nav>
         <ul className='flex items-center justify-between gap-4'>
