@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
-const Button = ({ children, to, variant }) => {
+const Button = ({ children, to, variant, type }) => {
   const variants = {
     primary: 'bg-emerald-500 text-white hover:bg-emerald-300',
     secondary: 'bg-amber-400 text-white hover:bg-amber-300',
@@ -20,13 +20,18 @@ const Button = ({ children, to, variant }) => {
     )
   }
 
-  return <Button className={className}>{children}</Button>
+  return (
+    <button type={type} className={className}>
+      {children}
+    </button>
+  )
 }
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'outline', 'ghost'])
+  variant: PropTypes.oneOf(['primary', 'secondary', 'outline', 'ghost']),
+  type: PropTypes.string
 }
 
 export default Button
