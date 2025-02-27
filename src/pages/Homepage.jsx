@@ -4,10 +4,11 @@ import { useEffect } from 'react'
 
 const Homepage = () => {
   const [message, setMessage] = useState({})
+  
 
   useEffect(() => {
     const fetchMessage = () => {
-      fetch('http://localhost:5055/v1/messages/2')
+      fetch('http://localhost:5055/v1/messages/random')
         .then((response) => response.json())
         .then((data) => setMessage(data))
         .catch((error) => console.error('Error:', error))

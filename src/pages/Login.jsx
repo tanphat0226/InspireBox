@@ -3,7 +3,9 @@ import { useForm } from 'react-hook-form'
 import Button from '../components/Button'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { loginUserAPI } from '../redux/user/userSlice'
 
 const schema = yup
   .object({
@@ -13,6 +15,8 @@ const schema = yup
   .required()
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -21,7 +25,12 @@ const Login = () => {
     resolver: yupResolver(schema)
   })
   const onSubmit = (data) => {
-    console.log(data)
+    const { username, password } = data
+
+    Promise.resolve(dispatch(loginUserAPI({ username, password }))).then((res) => {
+      // Check login successful not have error, redirect to / route
+      if (!res.error) navigate('/')
+    })
   }
   return (
     <div className='flex justify-center items-center h-screen bg-gray-100'>

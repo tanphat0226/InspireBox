@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form'
 import Button from '../components/Button'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { registerUserAPI } from '../services/apiUser'
 
 const schema = yup
   .object({
@@ -15,6 +16,7 @@ const schema = yup
   .required()
 
 const Signup = () => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -23,7 +25,18 @@ const Signup = () => {
     resolver: yupResolver(schema)
   })
   const onSubmit = (data) => {
-    console.log(data)
+    const newUser = {
+      username: data.username,
+      email: data.email,
+      password: data.password
+    }
+    registerUserAPI(newUser)
+      .then(() => {
+        navigate('/login')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
   return (
     <div className='flex justify-center items-center h-screen bg-gray-100'>
