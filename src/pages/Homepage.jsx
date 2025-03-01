@@ -1,20 +1,16 @@
 import { format } from 'date-fns'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { getRandMessageAPI } from '../services/apiMessages'
 
 const Homepage = () => {
   const [message, setMessage] = useState({})
-  
 
   useEffect(() => {
-    const fetchMessage = () => {
-      fetch('http://localhost:5055/v1/messages/random')
-        .then((response) => response.json())
-        .then((data) => setMessage(data))
-        .catch((error) => console.error('Error:', error))
+    const fetchRandomMessage = async () => {
+      const message = await getRandMessageAPI()
+      setMessage(message)
     }
-
-    fetchMessage()
+    fetchRandomMessage()
   }, [])
 
   return (

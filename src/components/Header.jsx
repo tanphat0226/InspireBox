@@ -21,20 +21,22 @@ const Header = () => {
             Home
           </NavLink>
           <NavLink
-            to='/dashboard'
+            to='/all-messages'
             className={({ isActive }) =>
               isActive
                 ? navLinkClasses + 'bg-emerald-300 hover:bg-emerald-300'
                 : navLinkClasses + 'hover:bg-gray-100 '
             }
           >
-            Dashboard
+            All Messages
           </NavLink>
           <button
             onClick={() => {
               dispatch(logoutUserAPI())
             }}
-            className={navLinkClasses + ' text-red-400 hover:bg-red-400 hover:text-white'}
+            className={
+              navLinkClasses + ' text-red-400 hover:bg-red-400 hover:text-white cursor-pointer'
+            }
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'

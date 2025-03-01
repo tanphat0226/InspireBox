@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import AppLayout from './components/AppLayout'
 import PageNotFound from './pages/PageNotFound'
 import Homepage from './pages/Homepage'
-import Dashboard from './pages/Dashboard'
+import MessagesPage from './pages/MessagesPage'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import { selectCurrentUser } from './redux/user/userSlice'
@@ -27,7 +27,7 @@ function App() {
         <Route element={<ProtectedRoute user={currentUser} />}>
           <Route element={<AppLayout />}>
             <Route index element={<Homepage />} />
-            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='all-messages' element={<MessagesPage />} />
           </Route>
         </Route>
 

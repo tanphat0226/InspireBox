@@ -35,7 +35,9 @@ const Login = () => {
   return (
     <div className='flex justify-center items-center h-screen bg-gray-100'>
       <div className='bg-white shadow-md rounded-lg p-6 m-4  min-w-[400px] flex flex-col justify-between'>
-        <h1 className='text-3xl font-bold text-center'>Welcome Back! 👋</h1>
+        <h1 className='text-3xl font-bold text-center'>
+          🔥 Welcome to <span className='text-emerald-400'>InspireBox</span>!
+        </h1>
 
         <form className='mt-8' onSubmit={handleSubmit(onSubmit)}>
           <Input
