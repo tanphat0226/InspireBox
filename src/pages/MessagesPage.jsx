@@ -74,11 +74,15 @@ const MessagesPage = () => {
         </Button>
       </div>
 
-      <MessageList
-        messages={messages}
-        onEditMessage={handleEditMessage}
-        onDeleteMessage={handleDeleteMessage}
-      />
+      {messages?.length > 0 ? (
+        <MessageList
+          messages={messages}
+          onEditMessage={handleEditMessage}
+          onDeleteMessage={handleDeleteMessage}
+        />
+      ) : (
+        <p className='text-gray-400 text-center'>No messages found. Add one to get started!</p>
+      )}
     </div>
   )
 }
