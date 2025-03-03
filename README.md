@@ -9,7 +9,7 @@ InspireBox is a web application designed to help users store, manage, and receiv
 
 - **Frontend Framework**: React.js (Vite)  
 - **Styling**: Tailwind CSS  
-- **State Management**: React Context API  
+- **State Management**: Redux
 - **API Communication**: Axios  
 
 ## 🎯 Features  
@@ -30,6 +30,7 @@ cd InspireBox
 npm install
 ```
 ### 3️⃣ Configuring API Root in `src/utils/constant.js`
+[Link Server Code](https://github.com/tanphat0226/message_box_be)
 The `API_ROOT` constant is used to define the base URL for API requests, adapting to different environments.
 Code Snippet
 
