@@ -1,8 +1,61 @@
-# React + Vite
+# 🌟 InspireBox
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+InspireBox is a web application designed to help users store, manage, and receive random motivational messages to stay inspired every day.  
 
-Currently, two official plugins are available:
+## 🚀 Live Demo  
+> [Link demo](https://inspire-box.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack 
+
+- **Frontend Framework**: React.js (Vite)  
+- **Styling**: Tailwind CSS  
+- **State Management**: React Context API  
+- **API Communication**: Axios  
+
+## 🎯 Features  
+
+✅ Users can add, edit, delete, and view their saved motivational messages.  
+✅ Random message generation for daily inspiration.  
+✅ Responsive and modern UI for seamless user experience.  
+✅ Integration with a backend API for data persistence.  
+
+## 📦 Installation
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/tanphat0226/InspireBox.git
+cd InspireBox
+```
+### 2️⃣ Install dependencies
+```bash
+npm install
+```
+### 3️⃣ Configuring API Root in `src/utils/constant.js`
+The `API_ROOT` constant is used to define the base URL for API requests, adapting to different environments.
+Code Snippet
+
+```javascript
+let API_ROOT = ''
+
+if (import.meta.env.MODE === 'development') {
+  API_ROOT = 'your localhost server'
+} else if (import.meta.env.MODE === 'production') {
+  API_ROOT = 'can skip it'
+}
+
+export { API_ROOT }
+```
+Explanation:
+  * Development Mode (`import.meta.env.MODE === 'development'`):
+    Set `API_ROOT` to your local backend server (e.g., `http://localhost:5000`).
+  * Production Mode (`import.meta.env.MODE === 'production'`):
+    No need to set `API_ROOT` explicitly since production configurations often handle this elsewhere.
+
+### 4️⃣ Start the development server
+```bash
+npm run dev
+```
+## 🤝 Contribution
+Feel free to contribute by opening issues or pull requests. Any feedback is appreciated!
+
+## 📄 License
+This project is open-source and available under the MIT License.
