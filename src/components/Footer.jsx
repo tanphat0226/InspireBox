@@ -5,7 +5,7 @@ const Footer = () => {
       {/* <q className='italic text-gray-400'>
         &quot;The small things you do today can make a big difference tomorrow.&quot;
       </q> */}
-      <div className='flex justify-between items-center mt-4'>
+      <div className='flex justify-between flex-wrap items-center mt-4'>
         <p className='text-gray-600'>&copy; {currentYear} InspireBox. Spread positivity!</p>
 
         <p>
