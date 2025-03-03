@@ -2,11 +2,8 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
 
-const AddMessageForm = ({ onClose, onAddMessage }) => {
-  const [formData, setFormData] = useState({
-    content: '',
-    author: ''
-  })
+const EditMessageForm = ({ message, onClose, onEditMessage }) => {
+  const [formData, setFormData] = useState(message)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState(null)
 
@@ -32,10 +29,9 @@ const AddMessageForm = ({ onClose, onAddMessage }) => {
       setError(null)
 
       // Submit the message
-      await onAddMessage(formData)
+      onEditMessage(message.id, formData)
 
       // Reset form and close modal
-      setFormData({ content: '', author: '' })
       onClose()
     } catch (err) {
       setError('Failed to add message. Please try again.')
@@ -81,20 +77,26 @@ const AddMessageForm = ({ onClose, onAddMessage }) => {
       {error && <p className='text-red-500 text-sm'>{error}</p>}
 
       <div className='flex justify-end space-x-3 pt-2'>
-        <Button type='button' variant='outline' onClick={onClose} disabled={isSubmitting}>
+        <Button
+          type='button'
+          variant='outline'
+          onClick={() => console.log(onClose())}
+          disabled={isSubmitting}
+        >
           Cancel
         </Button>
         <Button type='submit' disabled={isSubmitting}>
-          {isSubmitting ? 'Adding...' : 'Add Message'}
+          {isSubmitting ? 'Saving...' : 'Save Message'}
         </Button>
       </div>
     </form>
   )
 }
 
-AddMessageForm.propTypes = {
+EditMessageForm.propTypes = {
+  message: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
-  onAddMessage: PropTypes.func.isRequired
+  onEditMessage: PropTypes.func.isRequired
 }
 
-export default AddMessageForm
+export default EditMessageForm

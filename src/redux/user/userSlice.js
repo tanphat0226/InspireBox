@@ -10,7 +10,9 @@ const initialState = {
 // Actions to call API (asynchronous) and update state to redux, use middleware createAsyncThunk by extraReducers
 // https://redux-toolkit.js.org/api/createAsyncThunk
 export const loginUserAPI = createAsyncThunk('user/loginUserAPI', async (data) => {
-  const response = await axios.post(`${API_ROOT}/v1/users/login`, data)
+  const response = await axios.post(`${API_ROOT}/v1/users/login`, data, {
+    withCredentials: true
+  })
   return response.data
 })
 

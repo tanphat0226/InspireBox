@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react'
-import { getAllMessagesAPI } from '../services/apiMessages'
-import { format } from 'date-fns'
+import {
+  createMessageAPI,
+  deleteMessageAPI,
+  getAllMessagesAPI,
+  updateMessageAPI
+} from '../services/apiMessages'
 
 import Button from '../components/Button'
 import Modal from '../components/Modal'
 import AddMessageForm from '../components/AddMessageForm'
+import MessageList from '../components/MessageList'
 
 const MessagesPage = () => {
   const [messages, setMessages] = useState([])
@@ -18,10 +23,49 @@ const MessagesPage = () => {
     fetchMessages()
   }, [])
 
+  const handleAddMessage = async (data) => {
+    try {
+      // Submit the message
+      await createMessageAPI(data)
+
+      // Fetch all messages again
+      const messages = await getAllMessagesAPI()
+      setMessages(messages)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleDeleteMessage = async (id) => {
+    try {
+      // Submit the message
+      await deleteMessageAPI(id)
+
+      // Fetch all messages again
+      const messages = await getAllMessagesAPI()
+      setMessages(messages)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleEditMessage = async (id, data) => {
+    try {
+      // Submit the message
+      await updateMessageAPI(id, data)
+
+      // Fetch all messages again
+      const messages = await getAllMessagesAPI()
+      setMessages(messages)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
     <div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title='Add New Message'>
-        <AddMessageForm onClose={() => setIsModalOpen(false)} />
+        <AddMessageForm onClose={() => setIsModalOpen(false)} onAddMessage={handleAddMessage} />
       </Modal>
       <div className='flex flex-col md:justify-between md:flex-row md:items-center '>
         <h1 className='text-xl font-bold text-emerald-500 block mb-4 md:mt-0'>All Messages</h1>
@@ -29,22 +73,12 @@ const MessagesPage = () => {
           Add New Message
         </Button>
       </div>
-      <ul className='mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-        {messages?.map((message) => (
-          <li key={message.id} className='border rounded-lg p-4 shadow-sm flex flex-col'>
-            <q className='mt-2 text-gray-600 font-bold italic'>{message.content}</q>
-            {message?.author && <p className='mt-4 text-gray-400 text-sm'>- {message?.author}</p>}
-            {message?.created_at && (
-              <time
-                dateTime={message?.created_at ?? new Date()}
-                className='block text-gray-400 text-left text-sm italic mt-auto'
-              >
-                📅 {format(new Date(message?.created_at), 'MMM dd yyyy')}
-              </time>
-            )}
-          </li>
-        ))}
-      </ul>
+
+      <MessageList
+        messages={messages}
+        onEditMessage={handleEditMessage}
+        onDeleteMessage={handleDeleteMessage}
+      />
     </div>
   )
 }
