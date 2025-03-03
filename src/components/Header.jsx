@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 const Header = () => {
   const dispatch = useDispatch()
-  const navLinkClasses = 'font-bold py-2 px-4 rounded-sm  w-full text-center'
+  const navLinkClasses = 'font-bold py-2 px-4 rounded-sm w-full md:w-fit text-center '
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
@@ -42,7 +42,7 @@ const Header = () => {
       </button>
 
       {/* Desktop navigation */}
-      <nav className='hidden md:block'>
+      <nav className='hidden md:block w-fit'>
         <ul className='flex items-center justify-between gap-4'>
           <NavLink
             to='/'
